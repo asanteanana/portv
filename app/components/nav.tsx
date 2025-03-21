@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
+import { LiveTime } from './live-time'
 
 const navItems = {
   '/': {
@@ -39,7 +40,10 @@ export function Navbar() {
               )
             })}
           </div>
-          <ThemeToggle />
+          <div className="flex items-center space-x-4">
+            <LiveTime />
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
     </aside>

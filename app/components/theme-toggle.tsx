@@ -3,12 +3,35 @@
 import { useEffect, useState } from 'react'
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState<string | null>(null)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light'
-    setTheme(savedTheme)
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme')
+
+    // If no saved theme, check system preference
+    if (!savedTheme) {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      setTheme(systemTheme)
+      localStorage.setItem('theme', systemTheme)
+      document.documentElement.classList.toggle('dark', systemTheme === 'dark')
+    } else {
+      setTheme(savedTheme)
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+    }
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = (e: MediaQueryListEvent) => {
+      const newTheme = e.matches ? 'dark' : 'light'
+      if (!localStorage.getItem('theme')) {
+        setTheme(newTheme)
+        document.documentElement.classList.toggle('dark', e.matches)
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
   const toggleTheme = () => {
@@ -17,6 +40,9 @@ export function ThemeToggle() {
     localStorage.setItem('theme', newTheme)
     document.documentElement.classList.toggle('dark')
   }
+
+  // Don't render until we know the theme
+  if (theme === null) return null
 
   return (
     <button
