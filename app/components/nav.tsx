@@ -5,10 +5,8 @@ const navItems = {
     name: 'home',
   },
   '/blog': {
-    name: 'blog',
-  },
-  'https://vercel.com/templates/next.js/portfolio-starter-kit': {
-    name: 'deploy',
+    name: 'blog (private)',
+    disabled: true
   },
 }
 
@@ -23,13 +21,20 @@ export function Navbar() {
           <div className="flex flex-row space-x-0 pr-10">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
-                <Link
-                  key={path}
-                  href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
-                >
-                  {name}
-                </Link>
+                <div key={path}>
+                  {navItems[path].disabled ? (
+                    <span className="transition-all text-neutral-400 dark:text-neutral-500 flex align-middle relative py-1 px-2 m-1 cursor-not-allowed">
+                      {name}
+                    </span>
+                  ) : (
+                    <Link
+                      href={path}
+                      className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                    >
+                      {name}
+                    </Link>
+                  )}
+                </div>
               )
             })}
           </div>
