@@ -6,7 +6,18 @@ export type Metadata = {
 }
 
 // Since blog is marked as private, we'll return an empty array
-export function getBlogPosts() {
+export type BlogPost = {
+  slug: string;
+  content: string;
+  metadata: {
+    title: string;
+    publishedAt: string;
+    summary: string;
+    image?: string;
+  };
+};
+
+export function getBlogPosts(): BlogPost[] {
   return []
 }
 
