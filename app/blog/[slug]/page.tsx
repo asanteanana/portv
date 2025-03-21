@@ -3,6 +3,10 @@ import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
 
+type Params = {
+  slug: string;
+};
+
 export async function generateStaticParams() {
   let posts = getBlogPosts()
 
@@ -11,7 +15,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export function generateMetadata({ params }) {
+export function generateMetadata({ params }: { params: Params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
   if (!post) {
     return
@@ -51,7 +55,7 @@ export function generateMetadata({ params }) {
   }
 }
 
-export default function Blog({ params }) {
+export default function Blog({ params }: { params: Params }) {
   let post = getBlogPosts().find((post) => post.slug === params.slug)
 
   if (!post) {
