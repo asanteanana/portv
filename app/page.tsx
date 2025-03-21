@@ -4,14 +4,13 @@ export default function Page() {
   return (
     <section>
       <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
+        Hi, I'm Nana
       </h1>
       <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
+        {`I specialize in privacy engineering, data protection, and compliance, bridging the gap between security and user trust. My mission is to design robust privacy systems for the greater good of society.`}
+      </p>
+      <p className="mb-8">
+        {`I'm passionate about the intersection of AI and user experience, with a particular focus on Explainable and Responsible AI. My work aims to ensure that AI systems are not only powerful but also transparent, ethical, and user-centric.`}
       </p>
       <div className="my-8">
         <BlogPosts />
