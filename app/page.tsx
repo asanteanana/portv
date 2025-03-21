@@ -1,17 +1,12 @@
-'use client'
-
 import { BlogPosts } from 'app/components/posts'
 import { LiveTime } from 'app/components/live-time'
 
 export default function Page() {
   return (
     <section>
-      <div className="flex items-center justify-between mb-12">
-        <h1 className="text-3xl tracking-tighter">
-          Hi, I'm Nana
-        </h1>
-        <LiveTime />
-      </div>
+      <h1 className="text-3xl mb-12 tracking-tighter">
+        Hi, I'm Nana
+      </h1>
       <p className="mb-4">
         {`I specialize in privacy engineering, data protection, and compliance, bridging the gap between security and user trust.`}
       </p>
@@ -24,6 +19,7 @@ export default function Page() {
       <div className="my-8">
         <BlogPosts />
       </div>
+      <LiveTime />
     </section>
   )
 }

@@ -8,7 +8,7 @@ export function LiveTime() {
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date())
-    }, 10) // Update every 10ms for smooth milliseconds display
+    }, 1000) // Update every second
 
     return () => clearInterval(timer)
   }, [])
@@ -17,13 +17,12 @@ export function LiveTime() {
     const hours = time.getHours().toString().padStart(2, '0')
     const minutes = time.getMinutes().toString().padStart(2, '0')
     const seconds = time.getSeconds().toString().padStart(2, '0')
-    const milliseconds = time.getMilliseconds().toString().padStart(3, '0')
 
-    return `${hours}:${minutes}:${seconds}.${milliseconds}`
+    return `${hours}:${minutes}:${seconds}`
   }
 
   return (
-    <div className="font-mono text-sm text-neutral-600 dark:text-neutral-400">
+    <div className="font-mono text-sm text-neutral-600 dark:text-neutral-400 mt-8">
       {formatTime(time)}
     </div>
   )
