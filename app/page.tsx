@@ -1,5 +1,4 @@
 import { BlogPosts } from 'app/components/posts'
-import { LiveTime } from 'app/components/live-time'
 
 export default function Page() {
   return (
@@ -19,7 +18,6 @@ export default function Page() {
       <div className="my-8">
         <BlogPosts />
       </div>
-      <LiveTime />
     </section>
   )
 }
