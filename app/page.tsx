@@ -1,5 +1,3 @@
-import { BlogPosts } from 'app/components/posts'
-
 export default function Page() {
   return (
     <section>
@@ -19,10 +17,6 @@ export default function Page() {
         <p className="mb-8">
           {`My work aims to ensure that AI systems are not only powerful but also transparent, ethical, and user-centric.`}
         </p>
-      </div>
-      <div className="my-8">
-        <h2 className="text-2xl font-semibold mb-4 tracking-tighter">Latest Posts</h2>
-        <BlogPosts />
       </div>
     </section>
   )

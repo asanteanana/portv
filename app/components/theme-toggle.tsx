@@ -3,35 +3,19 @@
 import { useEffect, useState } from 'react'
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+  const [theme, setTheme] = useState<string>('light')
 
   useEffect(() => {
-    // Check localStorage first
+    setMounted(true)
+    // On mount, read the theme from localStorage or system preference
     const savedTheme = localStorage.getItem('theme')
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    const initialTheme = savedTheme || systemTheme
 
-    // If no saved theme, check system preference
-    if (!savedTheme) {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-      setTheme(systemTheme)
-      localStorage.setItem('theme', systemTheme)
-      document.documentElement.classList.toggle('dark', systemTheme === 'dark')
-    } else {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-    }
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (!localStorage.getItem('theme')) {
-        const newTheme = e.matches ? 'dark' : 'light'
-        setTheme(newTheme)
-        document.documentElement.classList.toggle('dark', e.matches)
-      }
-    }
-
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
+    setTheme(initialTheme)
+    document.documentElement.classList.remove('light', 'dark')
+    document.documentElement.classList.add(initialTheme)
   }, [])
 
   const toggleTheme = () => {
@@ -42,8 +26,9 @@ export function ThemeToggle() {
     document.documentElement.classList.add(newTheme)
   }
 
-  // Don't render until we know the theme
-  if (theme === null) return null
+  if (!mounted) {
+    return null
+  }
 
   return (
     <button
