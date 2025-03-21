@@ -8,22 +8,16 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true)
-    // On mount, read the theme from localStorage or system preference
-    const savedTheme = localStorage.getItem('theme')
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    const initialTheme = savedTheme || systemTheme
-
-    setTheme(initialTheme)
-    document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(initialTheme)
+    const savedTheme = localStorage.getItem('theme') || 'light'
+    setTheme(savedTheme)
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
   }, [])
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.remove('light', 'dark')
-    document.documentElement.classList.add(newTheme)
+    document.documentElement.classList.toggle('dark')
   }
 
   if (!mounted) {
