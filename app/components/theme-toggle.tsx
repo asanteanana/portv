@@ -23,8 +23,8 @@ export function ThemeToggle() {
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
     const handleChange = (e: MediaQueryListEvent) => {
-      const newTheme = e.matches ? 'dark' : 'light'
       if (!localStorage.getItem('theme')) {
+        const newTheme = e.matches ? 'dark' : 'light'
         setTheme(newTheme)
         document.documentElement.classList.toggle('dark', e.matches)
       }
@@ -38,7 +38,8 @@ export function ThemeToggle() {
     const newTheme = theme === 'light' ? 'dark' : 'light'
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
-    document.documentElement.classList.toggle('dark')
+    document.documentElement.classList.remove('light', 'dark')
+    document.documentElement.classList.add(newTheme)
   }
 
   // Don't render until we know the theme

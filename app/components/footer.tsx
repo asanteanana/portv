@@ -1,3 +1,5 @@
+import { LiveTime } from './live-time'
+
 function ArrowIcon() {
   return (
     <svg
@@ -30,11 +32,13 @@ export default function Footer() {
             <p className="ml-2 h-7">rss</p>
           </a>
         </li>
-
       </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {new Date().getFullYear()} Nana Asante
-      </p>
+      <div className="mt-8 flex items-center justify-between">
+        <p className="text-neutral-600 dark:text-neutral-300">
+          © {new Date().getFullYear()} Nana Asante
+        </p>
+        <LiveTime />
+      </div>
     </footer>
   )
 }

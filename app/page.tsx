@@ -3,8 +3,8 @@ import { BlogPosts } from 'app/components/posts'
 export default function Page() {
   return (
     <section>
-      <h1 className="text-3xl font-bold mb-8 tracking-tighter">
-        Nana Asante
+      <h1 className="text-3xl mb-8 tracking-tighter">
+        Hi, Nana
       </h1>
       <div className="prose dark:prose-invert">
         <p className="mb-4">
