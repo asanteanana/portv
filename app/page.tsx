@@ -3,7 +3,7 @@ import { BlogPosts } from 'app/components/posts'
 export default function Page() {
   return (
     <section>
-      <h1 className="font-bold text-3xl mb-12 tracking-tighter">
+      <h1 className="text-3xl mb-12 tracking-tighter">
         Hi, I'm Nana
       </h1>
       <p className="mb-4">
