@@ -2,7 +2,7 @@ export default function Page() {
   return (
     <section>
       <h1 className="text-3xl mb-8 tracking-tighter">
-        Hi, Nana
+        Hi, I'm Nana
       </h1>
       <div className="prose dark:prose-invert">
         <p className="mb-4">
