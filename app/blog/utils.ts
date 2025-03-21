@@ -18,7 +18,16 @@ export type BlogPost = {
 };
 
 export function getBlogPosts(): BlogPost[] {
-  return []
+  return [{
+    slug: 'hello-world',
+    content: '# Hello World\n\nThis is my first blog post!',
+    metadata: {
+      title: 'Hello World',
+      publishedAt: '2025-03-21',
+      summary: 'My first blog post',
+      image: undefined
+    }
+  }]
 }
 
 export function formatDate(date: string, includeRelative = false) {
